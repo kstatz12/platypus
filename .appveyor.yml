@@ -11,10 +11,10 @@ branches:
   only:
     - master
     - development
-    
+
 before_build:
   - nuget restore
 
 build:
   parallel: true                  # enable MSBuild parallel builds
-  project: src/Platypus.sln      # path to Visual Studio solution or project
+  project: Platypus.sln      # path to Visual Studio solution or project
