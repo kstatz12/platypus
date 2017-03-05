@@ -5,7 +5,7 @@ VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Platypus", "Platypus.csproj", "{4CFD367E-EF74-4BAC-BCE9-5C84CBE86016}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Platypus.Tests", "..\tests\Platypus.Tests\Platypus.Tests.csproj", "{FC9A63CC-0C43-46F5-B951-428087E15AAB}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Platypus.Tests", "Platypus.Tests\Platypus.Tests.csproj", "{FC9A63CC-0C43-46F5-B951-428087E15AAB}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
