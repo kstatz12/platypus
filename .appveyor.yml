@@ -13,7 +13,7 @@ branches:
     - development
 
 before_build:
-  - nuget restore
+  - nuget -PackagesDirectory /Packages
 
 build:
   parallel: true                  # enable MSBuild parallel builds
