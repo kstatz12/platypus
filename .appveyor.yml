@@ -12,9 +12,8 @@ branches:
     - master
     - development
 
-before_build:
-  - nuget -PackagesDirectory /Packages
-
 build:
   parallel: true                  # enable MSBuild parallel builds
   project: src/Platypus.sln      # path to Visual Studio solution or project
+  
+image: Visual Studio 2015
