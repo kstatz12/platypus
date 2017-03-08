@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using Platypus.Configuration;
 using Platypus.Event;
 
@@ -8,6 +7,7 @@ namespace Platypus.Domain
 {
     public abstract class AggregateRoot : IAggregate
     {
+        public virtual long Id { get; set; }
         public virtual Guid Key { get; set; }
         private readonly List<IEvent> _changes;
 
@@ -21,12 +21,13 @@ namespace Platypus.Domain
             return _changes;
         }
 
+        /// <summary>
+        /// Restore the aggregate to current state via historical events
+        /// </summary>
+        /// <param name="events"></param>
         public void RestoreFromHistory(List<IEvent> events)
         {
-            foreach (var @event in events.OrderBy(x => x.Version))
-            {
-                ApplyChange(@event, false);
-            }
+            events.Fold(e => ApplyChange(e, false));
         }
 
         /// <summary>
@@ -34,7 +35,7 @@ namespace Platypus.Domain
         /// </summary>
         /// <param name="event">Event with intent to change aggregate</param>
         /// <param name="isNew">if this is a new event, ie not from a rebuild of the aggregate</param>
-        public virtual void ApplyChange(IEvent @event, bool isNew)
+        public void ApplyChange(IEvent @event, bool isNew)
         {
             DomainBootstrapper.GetAction(@event.GetType()).Invoke(@event, this);
             if(isNew)

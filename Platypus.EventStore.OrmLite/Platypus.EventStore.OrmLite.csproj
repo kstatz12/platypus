@@ -1,14 +1,14 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{4CFD367E-EF74-4BAC-BCE9-5C84CBE86016}</ProjectGuid>
+    <ProjectGuid>{E31964BC-01A5-4122-AF65-9A12A27C9740}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Platypus</RootNamespace>
-    <AssemblyName>Platypus</AssemblyName>
+    <RootNamespace>Platypus.EventStore.OrmLite</RootNamespace>
+    <AssemblyName>Platypus.EventStore.OrmLite</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -31,7 +31,22 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Newtonsoft.Json, Version=9.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
-      <HintPath>packages\Newtonsoft.Json.9.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <HintPath>..\src\packages\Newtonsoft.Json.9.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="ServiceStack.Common, Version=4.5.6.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\src\packages\ServiceStack.Common.4.5.6\lib\net45\ServiceStack.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="ServiceStack.Interfaces, Version=4.0.0.0, Culture=neutral, PublicKeyToken=e06fbc6124f57c43, processorArchitecture=MSIL">
+      <HintPath>..\src\packages\ServiceStack.Interfaces.4.5.6\lib\portable-wp80+sl5+net45+win8+wpa81+monotouch+monoandroid+xamarin.ios10\ServiceStack.Interfaces.dll</HintPath>
+    </Reference>
+    <Reference Include="ServiceStack.OrmLite, Version=4.5.6.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\src\packages\ServiceStack.OrmLite.4.5.6\lib\net45\ServiceStack.OrmLite.dll</HintPath>
+    </Reference>
+    <Reference Include="ServiceStack.OrmLite.SqlServer, Version=4.5.6.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\src\packages\ServiceStack.OrmLite.SqlServer.4.5.6\lib\net45\ServiceStack.OrmLite.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="ServiceStack.Text, Version=4.5.6.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\src\packages\ServiceStack.Text.4.5.6\lib\net45\ServiceStack.Text.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -43,34 +58,19 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Command\CommandHandlerBootstrapper.cs" />
-    <Compile Include="Command\ICommand.cs" />
-    <Compile Include="Command\ICommandHandler.cs" />
-    <Compile Include="Configuration\DomainBootstrapper.cs" />
-    <Compile Include="Domain\AggregateRoot.cs" />
-    <Compile Include="Domain\IAggregate.cs" />
-    <Compile Include="EventStore\EventDescriptor.cs" />
-    <Compile Include="EventStore\EventResolver.cs" />
-    <Compile Include="EventStore\EventDescriptorHelpers.cs" />
-    <Compile Include="EventStore\IEventStore.cs" />
-    <Compile Include="EventStore\IEventStoreModel.cs" />
-    <Compile Include="EventStore\IEventStoreModelHelpers.cs" />
-    <Compile Include="Event\IEvent.cs" />
-    <Compile Include="Event\IHandler.cs" />
-    <Compile Include="Exceptions\ConcurrencyException.cs" />
-    <Compile Include="LinqExtensions.cs" />
+    <Compile Include="OrmLiteEventStoreBase.cs" />
+    <Compile Include="OrmLiteEventStoreModel.cs" />
+    <Compile Include="OrmLiteEventStoreModelHelpers.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="WriteStore\IWriteStore.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\src\Platypus.csproj">
+      <Project>{4CFD367E-EF74-4BAC-BCE9-5C84CBE86016}</Project>
+      <Name>Platypus</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
-  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
-       Other similar extension points exist, see Microsoft.Common.targets.
-  <Target Name="BeforeBuild">
-  </Target>
-  <Target Name="AfterBuild">
-  </Target>
-  -->
 </Project>
