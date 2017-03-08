@@ -8,8 +8,7 @@ namespace Platypus.EventStore
     {
         public static IEvent ResolveEvent(this object input, Type targetType)
         {
-            var obj = JObject.Parse(input.ToString());
-            return obj.ToObject(targetType) as IEvent;
+            return JObject.Parse(input.ToString()).ToObject(targetType) as IEvent;
         }
     }
 }
