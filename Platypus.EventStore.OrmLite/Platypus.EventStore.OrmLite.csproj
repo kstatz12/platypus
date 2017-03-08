@@ -64,7 +64,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\src\Platypus.csproj">
+    <ProjectReference Include="..\Platypus\Platypus.csproj">
       <Project>{4CFD367E-EF74-4BAC-BCE9-5C84CBE86016}</Project>
       <Name>Platypus</Name>
     </ProjectReference>

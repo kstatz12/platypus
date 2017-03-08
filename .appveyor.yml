@@ -17,7 +17,7 @@ before_build:
   
 build:
   parallel: true                  # enable MSBuild parallel builds
-  project: src/Platypus.sln      # path to Visual Studio solution or project
+  project: Platypus.sln      # path to Visual Studio solution or project
   
 image: Visual Studio 2015
 
