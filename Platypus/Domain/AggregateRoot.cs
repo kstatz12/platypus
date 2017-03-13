@@ -10,10 +10,12 @@ namespace Platypus.Domain
         public virtual long Id { get; set; }
         public virtual Guid Key { get; set; }
         private readonly List<IEvent> _changes;
+        private readonly List<IEvent> _publishOnlyEvents;
 
         protected AggregateRoot()
         {
             _changes = new List<IEvent>();
+            _publishOnlyEvents = new List<IEvent>();
         }
 
         public IEnumerable<IEvent> GetChanges()
@@ -40,6 +42,11 @@ namespace Platypus.Domain
             DomainBootstrapper.GetAction(@event.GetType()).Invoke(@event, this);
             if(isNew)
                 _changes.Add(@event);
+        }
+
+        public void AddPublishOnly(IEvent @event)
+        {
+            _publishOnlyEvents.Add(@event);
         }
     }
 }

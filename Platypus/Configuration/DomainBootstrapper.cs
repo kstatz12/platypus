@@ -11,8 +11,7 @@ namespace Platypus.Configuration
 
         public static void With<TEvent, TAggregate>(Action<TEvent, TAggregate> action) where TEvent : IEvent where TAggregate : IAggregate
         {
-            var aggregateAction = Convert(action);
-            Actions.Add(typeof(TEvent), aggregateAction);
+            Actions.Add(typeof(TEvent), action.Convert());
         }
 
         public static Action<IEvent, IAggregate> GetAction(Type eventType)
@@ -20,7 +19,7 @@ namespace Platypus.Configuration
             foreach (var action in Actions)
             {
                 if (action.Key != eventType) continue;
-                return Convert<IEvent, IAggregate>(action.Value);
+                return action.Value.Convert<IEvent, IAggregate>();
             }
             throw new Exception("No Aggregate Action Found For That Type");
         }
@@ -30,7 +29,7 @@ namespace Platypus.Configuration
             Actions.Clear();
         }
 
-        private static Action<object, object> Convert<TEvent, TAggregate>(Action<TEvent, TAggregate> action)
+        private static Action<object, object> Convert<TEvent, TAggregate>(this Action<TEvent, TAggregate> action)
         {
             if (action == null)
             {
@@ -39,7 +38,7 @@ namespace Platypus.Configuration
             return (e, a) => action((TEvent)e, (TAggregate)a);
         }
 
-        private static Action<TEvent, TAggregate> Convert<TEvent, TAggregate>(Action<object, object> action) where TEvent : IEvent where TAggregate : IAggregate
+        private static Action<TEvent, TAggregate> Convert<TEvent, TAggregate>(this Action<object, object> action) where TEvent : IEvent where TAggregate : IAggregate
         {
             if (action == null)
             {
