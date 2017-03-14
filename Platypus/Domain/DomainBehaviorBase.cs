@@ -8,14 +8,14 @@ using Platypus.Event;
 
 namespace Platypus.Domain
 {
-    public abstract class DomainBehaviorBase<TAggregate, TCommand> where TAggregate : AggregateRoot 
+    public class DomainBehaviorBase<TAggregate, TCommand> where TAggregate : AggregateRoot 
         where TCommand : ICommand 
     {
         private readonly TAggregate _aggregate;
         private readonly TCommand _command;
         private readonly List<Tuple<AbstractValidator<TAggregate>, IEvent>> _aggregateValidators;
         private readonly List<ValidationResult> _aggregateValidationResults;
-        protected DomainBehaviorBase(TAggregate aggregate, TCommand command, List<Tuple<AbstractValidator<TAggregate>, IEvent>> aggregateValidators)
+        public DomainBehaviorBase(TAggregate aggregate, TCommand command, List<Tuple<AbstractValidator<TAggregate>, IEvent>> aggregateValidators)
         {
             _aggregate = aggregate;
             _command = command;
@@ -23,12 +23,11 @@ namespace Platypus.Domain
             _aggregateValidationResults = new List<ValidationResult>();
         }
 
-        protected virtual TAggregate Execute(Func<TCommand, IEvent> behavior)
+        public void Execute(Func<TCommand, IEvent> behavior)
         {
-            if (!ValidateAggregate()) return _aggregate;
+            if (!ValidateAggregate()) return;
             var @event = behavior(_command);
             _aggregate.ApplyChange(@event, true);
-            return _aggregate;
         }
 
         private bool ValidateAggregate()
