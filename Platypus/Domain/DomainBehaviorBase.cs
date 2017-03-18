@@ -23,10 +23,9 @@ namespace Platypus.Domain
             _aggregateValidationResults = new List<ValidationResult>();
         }
 
-        public void Execute(Func<TCommand, IEvent> behavior)
+        public void Execute(IEvent @event)
         {
             if (!ValidateAggregate()) return;
-            var @event = behavior(_command);
             _aggregate.ApplyChange(@event, true);
         }
 
