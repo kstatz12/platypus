@@ -4,7 +4,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{43215FD5-5B25-46F8-AE45-08D9CDDCDBEC}</ProjectGuid>
+    <ProjectGuid>{59AACB14-E606-41AA-A4E1-8AB12FE07C5B}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Platypus.WriteStore.OrmLite</RootNamespace>
@@ -55,13 +55,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="OrmLiteWriteStore.cs" />
-    <Compile Include="OrmLiteWriteStoreModel.cs" />
+    <Compile Include="IWriteModel.cs" />
+    <Compile Include="OrmLiteAbstractWriteStore.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Platypus\Platypus.csproj">
-      <Project>{4CFD367E-EF74-4BAC-BCE9-5C84CBE86016}</Project>
+      <Project>{4cfd367e-ef74-4bac-bce9-5c84cbe86016}</Project>
       <Name>Platypus</Name>
     </ProjectReference>
   </ItemGroup>

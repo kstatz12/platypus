@@ -3,8 +3,6 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.26228.4
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Platypus.WriteStore.OrmLite", "Platypus.WriteStore.OrmLite\Platypus.WriteStore.OrmLite.csproj", "{43215FD5-5B25-46F8-AE45-08D9CDDCDBEC}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Platypus", "Platypus\Platypus.csproj", "{4CFD367E-EF74-4BAC-BCE9-5C84CBE86016}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Platypus.EventStore.OrmLite", "Platypus.EventStore.OrmLite\Platypus.EventStore.OrmLite.csproj", "{E31964BC-01A5-4122-AF65-9A12A27C9740}"
@@ -15,16 +13,14 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Platypus.Bus.RabbitMq", "Pl
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Platypus.ReadStore.RavenDb", "Platypus.ReadStore.RavenDb\Platypus.ReadStore.RavenDb.csproj", "{F5AB7919-F6BC-49DB-AE2B-84AB54AE8853}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Platypus.WriteStore.OrmLite", "Platypus.WriteStore.OrmLite\Platypus.WriteStore.OrmLite.csproj", "{59AACB14-E606-41AA-A4E1-8AB12FE07C5B}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{43215FD5-5B25-46F8-AE45-08D9CDDCDBEC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{43215FD5-5B25-46F8-AE45-08D9CDDCDBEC}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{43215FD5-5B25-46F8-AE45-08D9CDDCDBEC}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{43215FD5-5B25-46F8-AE45-08D9CDDCDBEC}.Release|Any CPU.Build.0 = Release|Any CPU
 		{4CFD367E-EF74-4BAC-BCE9-5C84CBE86016}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{4CFD367E-EF74-4BAC-BCE9-5C84CBE86016}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4CFD367E-EF74-4BAC-BCE9-5C84CBE86016}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -45,6 +41,10 @@ Global
 		{F5AB7919-F6BC-49DB-AE2B-84AB54AE8853}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F5AB7919-F6BC-49DB-AE2B-84AB54AE8853}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F5AB7919-F6BC-49DB-AE2B-84AB54AE8853}.Release|Any CPU.Build.0 = Release|Any CPU
+		{59AACB14-E606-41AA-A4E1-8AB12FE07C5B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{59AACB14-E606-41AA-A4E1-8AB12FE07C5B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{59AACB14-E606-41AA-A4E1-8AB12FE07C5B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{59AACB14-E606-41AA-A4E1-8AB12FE07C5B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
