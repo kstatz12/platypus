@@ -7,13 +7,15 @@ namespace Platypus.Domain
 {
     public abstract class AggregateRoot : IAggregate
     {
-        public virtual long Id { get; set; }
-        public virtual Guid Key { get; set; }
+        public long Id { get; set; }
+        public Guid Key { get; set; }
         private readonly List<IEvent> _changes;
         private readonly List<IEvent> _publishOnlyEvents;
 
-        protected AggregateRoot()
+        protected AggregateRoot(Guid key, long id)
         {
+            Key = key;
+            Id = id;
             _changes = new List<IEvent>();
             _publishOnlyEvents = new List<IEvent>();
         }
