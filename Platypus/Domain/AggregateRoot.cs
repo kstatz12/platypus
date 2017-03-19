@@ -12,10 +12,8 @@ namespace Platypus.Domain
         private readonly List<IEvent> _changes;
         private readonly List<IEvent> _publishOnlyEvents;
 
-        protected AggregateRoot(Guid key, long id)
+        protected AggregateRoot()
         {
-            Key = key;
-            Id = id;
             _changes = new List<IEvent>();
             _publishOnlyEvents = new List<IEvent>();
         }
@@ -49,6 +47,11 @@ namespace Platypus.Domain
         public void AddPublishOnly(IEvent @event)
         {
             _publishOnlyEvents.Add(@event);
+        }
+
+        public List<IEvent> GetPublishOnlyEvents()
+        {
+            return _publishOnlyEvents;
         }
     }
 }
