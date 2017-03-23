@@ -32,7 +32,7 @@ namespace Platypus.Bus.RabbitMq
             _channel?.Dispose();
         }
 
-        public void Start(IBusHost host)
+        public void Start()
         {
             _handlers.ForEach(x =>
             {
