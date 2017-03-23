@@ -15,18 +15,26 @@ namespace Platypus.Domain
         private readonly TCommand _command;
         private readonly List<Tuple<AbstractValidator<TAggregate>, IEvent>> _aggregateValidators;
         private readonly List<ValidationResult> _aggregateValidationResults;
-        public DomainBehaviorBase(TAggregate aggregate, TCommand command, List<Tuple<AbstractValidator<TAggregate>, IEvent>> aggregateValidators)
+        private readonly AbstractValidator<TCommand> _commandValidator;
+        public DomainBehaviorBase(TAggregate aggregate, TCommand command, List<Tuple<AbstractValidator<TAggregate>, IEvent>> aggregateValidators, AbstractValidator<TCommand> commandValidator)
         {
             _aggregate = aggregate;
             _command = command;
             _aggregateValidators = aggregateValidators;
             _aggregateValidationResults = new List<ValidationResult>();
+            _commandValidator = commandValidator;
         }
 
         public void Execute(IEvent @event)
         {
-            if (!ValidateAggregate()) return;
+            if (!ValidateAggregate() || !ValidateCommand()) return;
             _aggregate.ApplyChange(@event, true);
+        }
+
+        private bool ValidateCommand()
+        {
+            var validationResult = _commandValidator.Validate(_command);
+            return validationResult.IsValid;
         }
 
         private bool ValidateAggregate()
